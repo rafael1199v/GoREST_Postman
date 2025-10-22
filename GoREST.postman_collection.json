@@ -33,7 +33,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -74,10 +75,13 @@
 									"",
 									"pm.test(\"Response time is less than 2000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Create user with empty body\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -147,10 +151,13 @@
 									"    for(const error of errorList) {",
 									"        pm.expect(error.field).to.be.oneOf(expectedErrorFields);",
 									"    }",
-									"}); "
+									"}); ",
+									"",
+									"pm.execution.setNextRequest(\"Create user with invalid email\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -199,10 +206,13 @@
 									"",
 									"pm.test(\"Response contains an object with field email\", function () {",
 									"    pm.expect(pm.response.json()[0].field).to.eql(\"email\");",
-									"}); "
+									"}); ",
+									"",
+									"pm.execution.setNextRequest(\"List users\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -279,10 +289,12 @@
 									"pm.test(\"Response time is less than 3000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(3000);",
 									"});",
-									""
+									"",
+									"pm.execution.setNextRequest(\"Get user details\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -362,10 +374,13 @@
 									"pm.test(\"Response time is less than 1000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(1000);",
 									"});",
+									"",
+									"pm.execution.setNextRequest(\"Update user\");",
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -429,10 +444,13 @@
 									"pm.test(\"Response time is less than 3000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(3000);",
 									"});",
+									"",
+									"pm.execution.setNextRequest(\"Update invalid user\");",
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -456,7 +474,8 @@
 									"pm.environment.set(\"status\", newStatus);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -515,10 +534,11 @@
 									"    pm.expect(pm.response.text().toLowerCase()).to.include(\"resource not found\");",
 									"});",
 									"",
-									""
+									"pm.execution.setNextRequest(\"Create post\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -556,10 +576,12 @@
 									"pm.test(\"Response time is less than 3000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(3000);",
 									"});",
-									""
+									"",
+									"pm.execution.setNextRequest(null);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -613,7 +635,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -650,10 +673,13 @@
 									"    pm.expect(responseJson.body).to.eql(pm.environment.get(\"postBody\"));",
 									"});",
 									"",
-									"pm.environment.set(\"postId\", pm.response.json().id);"
+									"pm.environment.set(\"postId\", pm.response.json().id);",
+									"",
+									"pm.execution.setNextRequest(\"Create a post with an invalid user\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -700,10 +726,13 @@
 									"",
 									"pm.test(\"Error response has a user field\", function () {",
 									"    pm.expect(pm.response.json()[0]).to.have.any.keys(\"field\")",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"List posts\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -778,10 +807,14 @@
 									"        pm.expect(post.title).to.be.a(\"string\");",
 									"        pm.expect(post.body).to.be.a(\"string\");",
 									"    }",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Update post\");",
+									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -791,7 +824,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -825,7 +859,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -855,10 +890,13 @@
 									"",
 									"pm.test(\"Response time is less than 2000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Update post with empty body\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -904,10 +942,13 @@
 									"",
 									"pm.test(\"Response body has a field \\\"body\\\"\", function () {",
 									"    pm.expect(pm.response.json()[0].field).to.eql(\"body\");",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Create comment\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -954,10 +995,12 @@
 									"pm.test(\"Response time is less than 3000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(3000);",
 									"});",
-									""
+									"",
+									"pm.execution.setNextRequest(\"Delete user\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -996,7 +1039,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1045,10 +1089,13 @@
 									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
 									"});",
 									"",
-									"pm.environment.set(\"commentId\", pm.response.json().id);"
+									"pm.environment.set(\"commentId\", pm.response.json().id);",
+									"",
+									"pm.execution.setNextRequest(\"Create comment with empty name\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1101,10 +1148,13 @@
 									"    }",
 									"",
 									"    pm.expect(existFieldName).to.be.true;",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"List comments\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1185,10 +1235,13 @@
 									"        pm.expect(set.has(comment.id)).to.be.false;",
 									"        set.add(comment.id);",
 									"    }",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Update Comment\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1219,7 +1272,8 @@
 									"pm.environment.set(\"commentBody\", body);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1240,10 +1294,13 @@
 									"",
 									"pm.test(\"Status code name has string\", function () {",
 									"    pm.response.to.have.status(\"OK\");",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Update comment with empty body\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1290,10 +1347,13 @@
 									"    pm.expect(responseJson.name).to.eql(pm.environment.get(\"name\"));",
 									"    pm.expect(responseJson.email).to.eql(pm.environment.get(\"email\"));",
 									"    pm.expect(responseJson.body).to.eql(pm.environment.get(\"commentBody\"));",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Create todo\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1331,10 +1391,12 @@
 									"pm.test(\"Response time is less than 3000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(3000);",
 									"});",
-									""
+									"",
+									"pm.execution.setNextRequest(\"Delete post\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1377,7 +1439,8 @@
 									"pm.environment.set(\"todoDueOn\", date);"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1417,10 +1480,12 @@
 									"});",
 									"",
 									"pm.environment.set(\"todoId\", pm.response.json().id);",
-									" "
+									" ",
+									"pm.execution.setNextRequest('Create todo with no \"due_on\" field');"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1464,10 +1529,13 @@
 									"pm.test(\"The \\\"due_on\\\" property is null\", function () {",
 									"    const responseJson = pm.response.json();",
 									"    pm.expect(responseJson.due_on).to.be.null;",
-									"})"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"List todos\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1549,10 +1617,13 @@
 									"    for(const todo of todos) {",
 									"        pm.expect(todo.status).to.be.oneOf([\"completed\", \"pending\"]);",
 									"    }",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Update todo\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1588,7 +1659,8 @@
 									""
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						},
 						{
@@ -1615,10 +1687,13 @@
 									"",
 									"pm.test(\"Response time is less than 2000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(2000);",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Update todo with invalid status\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1670,10 +1745,13 @@
 									"    }",
 									"",
 									"    pm.expect(existFieldStatus).to.be.true;",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Delete todo\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1719,10 +1797,13 @@
 									"",
 									"pm.test(\"Response time is less than 3000ms\", function () {",
 									"    pm.expect(pm.response.responseTime).to.be.below(3000);",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Delete a non-existent task\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
@@ -1759,10 +1840,13 @@
 									"",
 									"pm.test(\"Response body message is \\\"Resource not found\\\"\", function () {",
 									"    pm.expect(pm.response.text().toLowerCase()).to.include(\"resource not found\");",
-									"});"
+									"});",
+									"",
+									"pm.execution.setNextRequest(\"Delete comment\");"
 								],
 								"type": "text/javascript",
-								"packages": {}
+								"packages": {},
+								"requests": {}
 							}
 						}
 					],
